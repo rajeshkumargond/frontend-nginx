@@ -1,0 +1,9 @@
+sudo: required
+services:
+ - docker
+
+before_install:
+ - docker built -t rajeshkumargond/frontend-nginx -f Dockerfile.dev .
+
+script:
+ - docker run rajeshkumargond/frontend-nginx npm run test -- --coverage
