@@ -3,7 +3,9 @@ services:
  - docker
 
 before_install:
- - docker built -t rajeshkumargond/frontend-nginx -f Dockerfile.dev .
+ - docker built -t rajeshgond/frontend-nginx -f Dockerfile.dev .
 
 script:
- - docker run rajeshkumargond/frontend-nginx npm run test -- --coverage
+ - docker run rajeshgond/frontend-nginx npm run test -- --coverage
+ - echo "$DOCKER_PASS" | docker login -u "$DOCKER_ID" --password-stdin
+ - docker push rajeshgond/frontend-nginx
